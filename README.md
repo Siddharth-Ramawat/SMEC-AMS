@@ -15,6 +15,7 @@ An Alumni Management system that can be used by Institutions
   -contact(privacy)
   -email(privacy)
   -add linkedn account/git account/codechef/website link
+  -Feedback
  -Feed
   -view posts
   -add blogs
