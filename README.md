@@ -1,14 +1,14 @@
 # SMEC-AMS
 An Alumni Management system that can be used by Institutions
 
- -Login page
+ -Login page <br>
  -dashboard
   -profile tab
   -search tab
   -notifications
   -feed
   -chat
- -Profile
+<br> -Profile<br>
   -experience
   -job role
   -current work location
@@ -16,7 +16,7 @@ An Alumni Management system that can be used by Institutions
   -email(privacy)
   -add linkedn account/git account/codechef/website link
   -Feedback
- -Feed
+ <br>-Feed<br>
   -view posts
   -add blogs
  -Search for people
@@ -25,7 +25,7 @@ An Alumni Management system that can be used by Institutions
  -Messaging system(chat)
   -chat by name/email
   -share via drive/dropbox
- -Events
+<br> -Events<br>
   -Venue
   -Date and time
   -Organizer
