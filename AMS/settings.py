@@ -11,19 +11,29 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import environ
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+env = environ.Env(
+    # set casting, default value
+    SECRET_KEY=str
+)
+env_path = os.path.join(BASE_DIR, '.env')
+
+# reading .env file
+environ.Env.read_env('.env')
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '$jk96@1(ao=xpd(rsj_$7v)oufimw*h^txq^19)()w5az_&@z%'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -33,6 +43,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'dash.apps.DashConfig',
     'users.apps.UsersConfig',
+    'events.apps.EventsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -77,12 +88,12 @@ WSGI_APPLICATION = 'AMS.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ams', # name of the database
-        'USER': 'postgres', # create a user in postgres of this name
-        'PASSWORD': 'helloworld', # set this as default paassword for the user created above
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'ams',  # name of the database
+        'USER': env('DATABASE_USER'),  # create a user in postgres of this name
+        'PASSWORD': env('DATABASE_PASSWORD'),  # set this as default password for the user created above
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': env('DATABASE_PORT'),
     }
 }
 
