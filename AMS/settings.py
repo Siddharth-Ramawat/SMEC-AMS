@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'dash.apps.DashConfig',
     'users.apps.UsersConfig',
     'events.apps.EventsConfig',
+    'feedback.apps.FeedbackConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
