@@ -16,7 +16,7 @@ create a __.env__ file in the base directory, taking *.env.example*  as your exa
   -search tab
   -notifications
   -feed
-  -chat
+
 - Profile
   -experience
   -job role
@@ -32,9 +32,9 @@ create a __.env__ file in the base directory, taking *.env.example*  as your exa
  -Search for people
   -by department
   -by year
- -Messaging system(chat)
-  -chat by name/email
-  -share via drive/dropbox
+ -Feedback
+  -feedback_type
+  
 -Events
   -Venue
   -Date and time
