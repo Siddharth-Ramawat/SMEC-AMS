@@ -1,4 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'form/base.html' %}
+
+{% block title %}Thanks{% endblock %}
+
 {% block content %}
-<h1>Successfully submitted</h1>
+<h1>Thanks for your response.</h1>
+<p><a href="{% url 'feedback_home' %}">Response again?</a></p>
 {% endblock %}

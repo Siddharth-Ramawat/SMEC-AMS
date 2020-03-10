@@ -11,10 +11,10 @@ from ..forms import FeedbackForm
 
 class FeedbackView(View):
     form_class = FeedbackForm
-    template_name = "form_template.html"
-
     def get(self,request,*args,**kwargs):
-        return render(request,self.template_name,{'form':self.form_class})
+        return render(request,
+                      template_name='feedback/form_template.html',
+                      context={'form':self.form_class})
 
     def post(self,request,*args,**kwargs):
         form = self.form_class(request.POST)

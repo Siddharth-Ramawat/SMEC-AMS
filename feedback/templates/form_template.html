@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
+
+{% block title %}Feedback Form{% endblock %}
+
 {% block content %}
-<form method="post">
+<form action="{% url 'feedback_home' %}"  method="POST">
     {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit">
+    {{ form.as_p }}
+    <input type="submit" />
 </form>
 {% endblock %}

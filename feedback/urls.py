@@ -1,8 +1,8 @@
 from django.urls import path
 
-from .views import FeedbackView
+from feedback.views import *
 
 urlpatterns =[
-    path('feedback/',FeedbackView,template="form_template.html")
+    path(r'feedback/',FeedbackView.as_view(),name="feedback_home")
 
 ]
