@@ -57,7 +57,11 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'events.apps.EventsConfig',
     'feedback.apps.FeedbackConfig',
+<<<<<<< HEAD
     'crispy_forms',
+=======
+    'debug_toolbar',
+>>>>>>> c2065e07c530b187ea855bada6bccc73f2ce37b1
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -66,6 +70,20 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+<<<<<<< HEAD
+=======
+MIDDLEWARE = [
+
+    'django.middleware.security.SecurityMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+>>>>>>> c2065e07c530b187ea855bada6bccc73f2ce37b1
 
 ROOT_URLCONF = 'AMS.urls'
 
@@ -84,7 +102,7 @@ DEBUG_TOOLBAR_PANELS = (
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['../feedback/templates',],
+        'DIRS': ['feedback/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -147,6 +165,11 @@ USE_L10N = True
 
 USE_TZ = True
 
+def show_toolbar(request):
+    return True
+DEBUG_TOOLBAR_CONFIG = {
+    "SHOW_TOOLBAR_CALLBACK" : show_toolbar,
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}View Feedback{% endblock %}
+
+{% block content %}
+<div>
+    <ul>
+        <li>
+            <a href="{% url 'view_cat_feedback' 'GEN' %}">View Generic Feedback</a>
+        </li>
+        <li>
+            <a href="{% url 'view_cat_feedback' 'CUR' %}">View Curriculum Feedback</a>
+        </li>
+        <li>
+            <a href="{% url 'view_cat_feedback' 'INF' %}">View Infrastructure Feedback</a>
+        </li>
+    </ul>
+</div>
+{% if feedback %}
+{% for entry in feedback %}
+<div>
+    {{ entry.user }}
+    {{ entry.text }}
+    {{ entry.date_added }}
+    {{ entry.category }}
+</div>
+{% endfor %}
+{% endif %}
+<div>
+    <a href="{% url 'view_feedback' %}">View All/Home</a>
+</div>
+{% endblock %}

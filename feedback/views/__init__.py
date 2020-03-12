@@ -1,1 +1,2 @@
-from .feedback_view import FeedbackView
+from .insert_feedback import *
+from .view_feedback import *
