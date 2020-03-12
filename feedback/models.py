@@ -1,9 +1,6 @@
 from django.db import models
-<<<<<<< HEAD
-=======
 from django.contrib.auth.models import User
 
->>>>>>> c2065e07c530b187ea855bada6bccc73f2ce37b1
 # Create your models here.
 INFRASTRCUTURE = 'INF'
 GENERIC = 'GEN'
@@ -28,4 +25,4 @@ class Feedback(models.Model):
     email= models.EmailField()
 
     def __str__(self):
-        return self.user_name
+        return self.user.username

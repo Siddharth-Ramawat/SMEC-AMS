@@ -3,8 +3,10 @@ from django.http import HttpResponseRedirect
 from django.views import View
 from django.shortcuts import render
 from ..models import Feedback
+from django.contrib.auth.decorators import login_required
 
 
+# @login_required
 class ViewAllFeedback(View):
 
     def get(self,request,*args,**kwargs):

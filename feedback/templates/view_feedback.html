@@ -1,29 +1,40 @@
-{% extends 'base.html' %}
+{% extends 'dash/base.html' %}
 
 {% block title %}View Feedback{% endblock %}
 
 {% block content %}
-<div>
-    <ul>
-        <li>
-            <a href="{% url 'view_cat_feedback' 'GEN' %}">View Generic Feedback</a>
-        </li>
-        <li>
-            <a href="{% url 'view_cat_feedback' 'CUR' %}">View Curriculum Feedback</a>
-        </li>
-        <li>
-            <a href="{% url 'view_cat_feedback' 'INF' %}">View Infrastructure Feedback</a>
-        </li>
-    </ul>
-</div>
+
+<div class="col-md-6 sidenav">
+          <div class="content-section">
+            <h3>Catagory</h3>
+              <p class='text-muted'>Find any feedback here</p>
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-light">
+                    <a href="{% url 'view_cat_feedback' 'GEN' %}">View Generic Feedback</a>
+                </li>
+                <li class="list-group-item list-group-item-light">
+                    <a href="{% url 'view_cat_feedback' 'CUR' %}">View Curriculum Feedback</a>
+                </li>
+                <li class="list-group-item list-group-item-light">
+                    <a href="{% url 'view_cat_feedback' 'INF' %}">View Infrastructure Feedback</a>
+                </li>
+              </ul>
+          </div>
+        </div>
+<main role="main" class="main">
 {% if feedback %}
 {% for entry in feedback %}
-<div>
-    {{ entry.user }}
-    {{ entry.text }}
-    {{ entry.date_added }}
-    {{ entry.category }}
-</div>
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="#">{{ entry.user }}</a>
+            <small class="text-muted">{{ entry.date_added|date:"F d, Y" }}</small>
+        </div>
+            {{ entry.text }}
+            {{ entry.category }}
+    </div>
+</article>
+</main>
 {% endfor %}
 {% endif %}
 <div>

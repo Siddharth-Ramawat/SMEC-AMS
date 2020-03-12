@@ -38,17 +38,6 @@ DEBUG = env('DEBUG')
 ALLOWED_HOSTS = []
 
 
-MIDDLEWARE = [
-
-    'django.middleware.security.SecurityMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
 # Application definition
 
 INSTALLED_APPS = [
@@ -57,11 +46,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'events.apps.EventsConfig',
     'feedback.apps.FeedbackConfig',
-<<<<<<< HEAD
     'crispy_forms',
-=======
-    'debug_toolbar',
->>>>>>> c2065e07c530b187ea855bada6bccc73f2ce37b1
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -70,8 +55,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
-<<<<<<< HEAD
-=======
 MIDDLEWARE = [
 
     'django.middleware.security.SecurityMiddleware',
@@ -83,21 +66,20 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
->>>>>>> c2065e07c530b187ea855bada6bccc73f2ce37b1
 
 ROOT_URLCONF = 'AMS.urls'
 
-DEBUG_TOOLBAR_PANELS = (
-    'debug_toolbar.panels.version.VersionDebugPanel',
-    'debug_toolbar.panels.timer.TimerDebugPanel',
-    'debug_toolbar.panels.settings.SettingsPanel',
-    'debug_toolbar.panels.headers.HeaderDebugPanel',
-    'debug_toolbar.panels.request.RequestPanel',
-    'debug_toolbar.panels.template.TemplateDebugPanel',
-    'debug_toolbar.panels.sql.SQLDebugPanel',
-    'debug_toolbar.panels.signals.SignalDebugPanel',
-
-)
+# DEBUG_TOOLBAR_PANELS = (
+#     'debug_toolbar.panels.version.VersionDebugPanel',
+#     'debug_toolbar.panels.timer.TimerDebugPanel',
+#     'debug_toolbar.panels.settings.SettingsPanel',
+#     'debug_toolbar.panels.headers.HeaderDebugPanel',
+#     'debug_toolbar.panels.request.RequestPanel',
+#     'debug_toolbar.panels.template.TemplateDebugPanel',
+#     'debug_toolbar.panels.sql.SQLDebugPanel',
+#     'debug_toolbar.panels.signals.SignalDebugPanel',
+#
+# )
 
 TEMPLATES = [
     {
@@ -165,10 +147,13 @@ USE_L10N = True
 
 USE_TZ = True
 
+
 def show_toolbar(request):
     return True
+
+
 DEBUG_TOOLBAR_CONFIG = {
-    "SHOW_TOOLBAR_CALLBACK" : show_toolbar,
+    "SHOW_TOOLBAR_CALLBACK": show_toolbar,
 }
 
 # Static files (CSS, JavaScript, Images)
@@ -176,10 +161,10 @@ DEBUG_TOOLBAR_CONFIG = {
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-    '/var/www/static/',
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "static"),
+#     '/var/www/static/',
+# ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_URL = 'login'
