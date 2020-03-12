@@ -16,7 +16,6 @@ import environ
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 env = environ.Env(
     # set casting, default value
     SECRET_KEY=str
@@ -36,7 +35,6 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -99,7 +97,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'AMS.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
@@ -113,7 +110,6 @@ DATABASES = {
         'PORT': env('DATABASE_PORT'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -132,7 +128,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -175,3 +170,9 @@ INTERNAL_IPS = [
     '127.0.0.1'
     # ...
 ]
+
+# Where to store uploaded files
+# MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = ''
+MEDIA_URL = '/media/'

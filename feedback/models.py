@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from users.models import Profile
 
 # Create your models here.
 INFRASTRCUTURE = 'INF'
@@ -16,7 +16,7 @@ class Feedback(models.Model):
     )
 
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     category = models.CharField(max_length=3,
                                 choices = FEEDBACK_CHOICES,
                                 default=GENERIC)

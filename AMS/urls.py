@@ -23,6 +23,8 @@ from users import views as user_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('feedback.urls')),
+    path('', include('dash.urls')),
 
 ]
 
@@ -33,10 +35,9 @@ if settings.DEBUG:
         path('register/', user_views.register, name='register'),
         path('login/', auth_views.LoginView.as_view(template_name='users/login.html', redirect_authenticated_user=True), name='login'),
         path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
-        path('', include('feedback.urls')),
-        path('', include('dash.urls')),
+        path('profile/', user_views.profile, name='profile'),
 
         # For django versions before 2.0:
         # url(r'^__debug__/', include(debug_toolbar.urls)),
 
-    ] + urlpatterns
+    ] + urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
