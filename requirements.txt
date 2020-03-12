@@ -1,3 +1,5 @@
-environ
-Django==2.2.10
-psycopg2==2.7.4
+django-debug-toolbar
+django-environ
+django
+psycopg2
+django-crispy-forms
