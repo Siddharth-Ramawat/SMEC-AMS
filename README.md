@@ -11,31 +11,30 @@ create a __.env__ file in the base directory, taking *.env.example*  as your exa
 
  ~~~
  -Login page
- -dashboard
+ -dashboard (Siddharth)
   -profile tab
   -search tab
   -notifications
   -feed
 
-- Profile
-  -experience
-  -job role
-  -current work location
-  -contact(privacy)
+- Profile (Siddharth)
+  -experience / Not Added Yet
+  -job role / Not Added Yet
+  -current work location / Not Added Yet
+  -contact(privacy) / Not Added Yet
   -email(privacy)
-  -add linkedn account/git account/codechef/website link
-  -Feedback
+  -add linkedn account/git account/codechef/website link / Not Added yet
 
 -Feed
   -view posts
   -add blogs
- -Search for people
+ -Search for people (Sirisha)
   -by department
   -by year
- -Feedback
+-Feedback (Sirisha)
   -feedback_type
   
--Events
+-Events (Ashish)
   -Venue
   -Date and time
   -Organizer
