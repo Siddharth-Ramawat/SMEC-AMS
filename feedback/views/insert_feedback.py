@@ -10,7 +10,7 @@ class FeedbackView(View):
     def get(self,request,*args,**kwargs):
         return render(request,
                       template_name='insert_feedback.html',
-                      context={'form':self.form_class})
+                      context={'form':self.form_class,'title':'Feedback Form'})
 
     def post(self,request,*args,**kwargs):
         form = FeedbackForm(request.POST)
@@ -18,6 +18,6 @@ class FeedbackView(View):
             form.save()
             return render(request,"success.html")
 
-        return render(request,'insert_feedback.html',{'form':self.form_class})
+        return render(request,'insert_feedback.html',{'form':self.form_class,'title':'Feedback Form'})
 
 
