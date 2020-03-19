@@ -1,7 +1,5 @@
 {% extends 'dash/base.html' %}
 
-
-
 {% block content %}
 <form action="{% url 'feedback_home' %}"  method="POST">
     {% csrf_token %}
