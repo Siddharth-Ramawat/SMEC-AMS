@@ -2,12 +2,13 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.views import View
 from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
 from ..models import Feedback
 from django.contrib.auth.decorators import login_required
 
 
 # @login_required
-class ViewAllFeedback(View):
+class ViewAllFeedback(LoginRequiredMixin,View):
 
     def get(self, request, *args, **kwargs):
 

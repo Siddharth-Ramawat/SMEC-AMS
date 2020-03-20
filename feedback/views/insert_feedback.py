@@ -5,8 +5,9 @@ from django.views import View
 from django.shortcuts import render
 from ..forms import FeedbackForm
 from users.models import Profile
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class FeedbackView(View):
+class FeedbackView(LoginRequiredMixin,View):
     def get(self,request, *args, **kwargs):
         initial = {'username':request.user.username}
         form = FeedbackForm(instance=request.user, initial=initial)
