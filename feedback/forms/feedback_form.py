@@ -12,8 +12,10 @@ FEEDBACK_CHOICES = (
     )
 
 class FeedbackForm(forms.ModelForm):
-     class Meta:
+    username = forms.CharField(max_length=120)
+    class Meta:
          model = Feedback
-         exclude = []
+         include = ['username']
+         exclude = ['user']
 
         

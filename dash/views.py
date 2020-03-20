@@ -73,13 +73,13 @@ class SearchUserView(LoginRequiredMixin,View):
             search = request.GET.get('query').upper()
             users = Profile.objects.filter(Q(dept = search)|Q(registration_number=search)).order_by('-user_id__date_joined')
             context = {
-                'title':'Search User',
-                'users':users,
-                'query':search
+                'title': 'Search User',
+                'users': users,
+                'query': search
             }
             return render(request,'dash/search_list.html', context)
-
-        return render(request, 'dash/search_list.html')
+        else:
+            return render(request, 'dash/home.html', {'title':'Dash-Home'})
 
 def about(request):
     return render(request, 'dash/about.html', { 'title' : 'About'})

@@ -1,8 +1,6 @@
 {% extends 'dash/base.html' %}
 
-{% block title %}Thanks{% endblock %}
-
 {% block content %}
-<h1>Thanks for your response.</h1>
-<p><a href="{% url 'feedback_home' %}">Give another feedback?</a></p>
+<h1>Feedback submitted successfully.</h1>
+<p><a class="btn btn-outline-info" href="{% url 'feedback_home' %}">Give another feedback?</a></p>
 {% endblock %}

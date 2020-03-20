@@ -29,7 +29,7 @@ class ProfileUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ['dept','registration_number','image']
+        fields = ['dept', 'registration_number', 'image']
 
     def clean_dept(self):
         return self.cleaned_data['dept'].upper()

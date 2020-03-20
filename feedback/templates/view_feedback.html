@@ -1,7 +1,5 @@
 {% extends 'dash/base.html' %}
 
-
-
 {% block content %}
 
 <div class="col-md-6 sidenav">
@@ -34,8 +32,8 @@
             {{ entry.category }}
     </div>
 </article>
-</main>
 {% endfor %}
+</main>
 {% endif %}
 <div>
     <a href="{% url 'view_feedback' %}">View All/Home</a>

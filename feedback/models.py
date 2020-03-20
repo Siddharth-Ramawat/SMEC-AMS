@@ -25,4 +25,4 @@ class Feedback(models.Model):
     email= models.EmailField()
 
     def __str__(self):
-        return self.user.username
+        return self.user.user_id
