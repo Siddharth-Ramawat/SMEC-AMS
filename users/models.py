@@ -15,8 +15,8 @@ class Profile(models.Model):
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
-    dept = models.CharField(max_length=120,default=None)
-    registration_number = models.CharField(max_length=12,default=None)
+    dept = models.CharField(max_length=120, blank=True, null=True)
+    registration_number = models.CharField(max_length=12, blank=True, null=True)
 
     def __str__(self):
         return f'{self.user.username} Profile'
