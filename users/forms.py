@@ -31,5 +31,8 @@ class ProfileUpdateForm(forms.ModelForm):
         model = Profile
         fields = ['dept','registration_number','image']
 
+    def clean_dept(self):
+        return self.cleaned_data['dept'].upper()
+
     def clean_registration_number(self):
         return self.cleaned_data['registration_number'].upper()

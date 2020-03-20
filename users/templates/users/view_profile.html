@@ -1,0 +1,25 @@
+{% extends "dash/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    {% if view_user %}
+<!--    <div class="content-section">-->
+<!--      <div class="media">-->
+<!--        <img class="rounded-circle account-img" src="{{ view_user.image.url }}">-->
+<!--        <div class="media-body">-->
+<!--          <h2 class="account-heading">{{ view_user.user.username }}</h2>-->
+<!--          <p class="text-secondary">{{ view_user.user.email }}<br/>-->
+<!--          </p>-->
+
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<div class="card">
+  <img class="rounded-circle account-img" src="{{ view_user.image.url }}" alt="Profile Picture">
+  <h1>{{view_user.user.username}}</h1>
+  <p class="title">Please add bio here<br/>Email id: {{ view_user.user.email }}</p>
+  <p>Department:{{ view_user.dept }}<br/>Registration Number:{{ view_user.registration_number}}</p>
+  <p><button>Contact</button></p>
+</div>
+    {% endif %}
+
+{% endblock content %}

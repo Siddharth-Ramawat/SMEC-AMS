@@ -1,6 +1,8 @@
 from django.shortcuts import render
+from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
+    View,
     ListView,
     DetailView,
     CreateView,
@@ -8,6 +10,7 @@ from django.views.generic import (
     DeleteView
 )
 from .models import Post
+from users.models import Profile
 # Create your views here.
 
 
@@ -63,6 +66,21 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
+class SearchUserView(LoginRequiredMixin,View):
+    def get(self,request,*args,**kwargs):
+
+        if request.GET.get('query') != '':
+            search = request.GET.get('query').upper()
+            users = Profile.objects.filter(Q(dept = search)|Q(registration_number=search)).order_by('-user_id__date_joined')
+            context = {
+                'title':'Search User',
+                'users':users,
+                'query':search
+            }
+            return render(request,'dash/search_list.html', context)
+
+        return render(request, 'dash/search_list.html')
 
 def about(request):
     return render(request, 'dash/about.html', { 'title' : 'About'})
+
