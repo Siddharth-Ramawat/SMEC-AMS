@@ -16,4 +16,14 @@ class ViewAllFeedback(LoginRequiredMixin, View):
             feedback_entries = Feedback.objects.all()
             return render(request, template_name="view_feedback.html", context={'feedback': feedback_entries, 'title': 'View Feedback'})
 
-        return render(request, template_name="dash/stalker.html", context={'title': 'Alert'})
+        return render(request, template_name="dash/stalker.html", context={'title': 'Alert'} )
+
+class ClearFeedbackView(LoginRequiredMixin, View):
+    def get(self,request):
+        Feedback.objects.all().delete()
+        feedback_entries = Feedback.objects.all()
+        return render(request, template_name="view_feedback.html" , context={'title':'View Feedback','feedback' :feedback_entries })
+
+    def post(self,request):
+        delete = Feedback.objects.all()
+        delete.delete()
