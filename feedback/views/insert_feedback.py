@@ -10,7 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 class FeedbackView(LoginRequiredMixin,View):
     def get(self,request, *args, **kwargs):
         initial = {'username':request.user.username}
-        form = FeedbackForm(instance=request.user, initial=initial)
+        form = FeedbackForm(instance=request.user, initial=initial, size = 1, maxChars=400)
         return render(request,
                       template_name='insert_feedback.html',
                       context={'form': form, 'title': 'Feedback Form'})

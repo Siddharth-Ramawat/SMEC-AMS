@@ -32,13 +32,12 @@
             <a class="mr-2" href="#">{{ entry.user.user.username }}</a>
             <small class="text-muted">{{ entry.date_added|date:"F d, Y" }}</small>
              <small class=" float-right
-{% if entry.category == 'GEN' %} text-dark
-{% elif entry.category == 'CUR' %} text-success
-{% elif entry.category == 'INF' %} text-warning
- {% endif %}">CATEGORY : {{entry.category}}</small>
+                {% if entry.category == 'GEN' %} text-dark
+                {% elif entry.category == 'CUR' %} text-success
+                {% elif entry.category == 'INF' %} text-warning
+                {% endif %}">CATEGORY : {{entry.category}}</small>
         </div>
             {{ entry.text }}
-
     </div>
 </article>
 {% endfor %}

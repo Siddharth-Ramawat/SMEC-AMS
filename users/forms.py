@@ -24,8 +24,8 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class ProfileUpdateForm(forms.ModelForm):
-    dept = forms.CharField()
-    registration_number = forms.CharField()
+    dept = forms.CharField(max_length=120, required=False)
+    registration_number = forms.CharField(max_length=12, required=False)
 
     class Meta:
         model = Profile
