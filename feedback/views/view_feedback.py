@@ -1,9 +1,10 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 from django.views import View
 from django.shortcuts import render
+from django.template.loader import render_to_string
 from django.contrib.auth.mixins import LoginRequiredMixin
-from ..models import Feedback
+
+from ..forms import *
 
 class ViewAllFeedback(LoginRequiredMixin, View):
 
@@ -19,11 +20,13 @@ class ViewAllFeedback(LoginRequiredMixin, View):
         return render(request, template_name="dash/stalker.html", context={'title': 'Alert'} )
 
 class ClearFeedbackView(LoginRequiredMixin, View):
-    def get(self,request):
-        Feedback.objects.all().delete()
-        feedback_entries = Feedback.objects.all()
-        return render(request, template_name="view_feedback.html" , context={'title':'View Feedback','feedback' :feedback_entries })
+    model = Feedback
+    form_class = ClearFeedback
+    template_name = "clear_feedback_form.html"
 
-    def post(self,request):
-        delete = Feedback.objects.all()
-        delete.delete()
+    def get(self,request,*args,**kwargs):
+        return render(request,template_name="clear_feedback_form.html",context={'form':form_class})
+
+    def form_valid(self,form):
+        delete_ = Feedback.objects.all()
+        return HttpResponse(render_to_string('success.html'))

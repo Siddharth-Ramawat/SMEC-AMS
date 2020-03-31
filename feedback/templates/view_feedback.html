@@ -1,7 +1,9 @@
 {% extends 'dash/base.html' %}
 
 {% block content %}
-
+<script src="http://malsup.github.com/jquery.form.js"></script>
+<div  class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+</div>
 <div class="col-md-6 sidenav">
           <div class="content-section">
             <h3>Category</h3>
@@ -19,11 +21,12 @@
               </ul>
           </div>
             <div class="content-section">
-                <a href="{% url 'clear_feedback' %}" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-outline-danger list-group-item-light" >Clear All Feedback
+                <a  data-toggle="modal"  href="{% url 'clear_feedback' %}" data-target="#modal" title="clear feedback" data-tooltip class="btn btn-outline-danger list-group-item-light" >Clear All Feedback
                 </a>
             </div>
         </div>
 <main role="main" class="main">
+
 {% if feedback %}
 {% for entry in feedback %}
 <article class="media content-section">
@@ -46,4 +49,5 @@
 <div class="main">
     <a href="{% url 'view_feedback' %}" class="btn btn-outline-success">View All/Home</a>
 </div>
+
 {% endblock %}

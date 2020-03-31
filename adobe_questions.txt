@@ -1,0 +1,26 @@
+
+#using the following line of code to fetch console input
+def gridOfNodes(grid,rows,cols):
+    res  = 0
+    initial_ones = grid[0].count(1)
+    prev_count = initial_ones
+  
+    
+    for i in range(1,rows):
+        count_ones = grid[i].count(1)
+        if count_ones > 0 and prev_count>0:
+            res = res+ prev_count*count_ones
+            prev_count = count_ones
+    return res
+  
+n = int(input())
+m = int(input())
+grid=[]
+
+for i in range(0,n):
+    row = list(map(int,input().strip().split(" ")))
+    grid.append(row)
+
+print(gridOfNodes(grid,n,m))
+
+
