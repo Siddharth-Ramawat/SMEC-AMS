@@ -19,8 +19,20 @@ class UserUpdateForm(forms.ModelForm):
         model = User
         fields = ['username', 'email']
 
+    def clean_email(self):
+        return self.cleaned_data['email'].lower()
+
 
 class ProfileUpdateForm(forms.ModelForm):
+    dept = forms.CharField(max_length=120, required=False)
+    registration_number = forms.CharField(max_length=12, required=False)
+
     class Meta:
         model = Profile
-        fields = ['image']
+        fields = ['dept', 'registration_number', 'image']
+
+    def clean_dept(self):
+        return self.cleaned_data['dept'].upper()
+
+    def clean_registration_number(self):
+        return self.cleaned_data['registration_number'].upper()

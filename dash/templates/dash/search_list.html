@@ -1,0 +1,25 @@
+{% extends "dash/base.html" %}
+{% block content %}
+<main role="main" class="container">
+   {% if users %}
+   {% for user in users %}
+      <article class="media content-section">
+          <img class="rounded-circle article-img"  src="{{user.image.url}}" alt="Profile Pic">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="{% url 'user_profile' user.id %}">{{ user.user.username }}</a>
+              <small class="text-muted">{{user.user.email}}</small>
+               <small class="text-muted">{{user.dept}}</small>
+               <small class="text-muted">{{user.registration_number}}</small>
+            </div>
+            <h2><a class="article-title" href="{% url 'user_profile' user.id %}">{{user.user.username}}</a></h2>
+            <p class="article-content">{{ user.dept }}</p>
+          </div>
+        </article>
+
+   {% endfor %}
+   {% else %}
+    <h2>No users with "{{query}}" data found.</h2>
+   {% endif %}
+</main>
+{% endblock content %}

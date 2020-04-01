@@ -1,12 +1,10 @@
 {% extends 'dash/base.html' %}
 
-
-
 {% block content %}
 
 <div class="col-md-6 sidenav">
           <div class="content-section">
-            <h3>Catagory</h3>
+            <h3>Category</h3>
               <p class='text-muted'>Find any feedback here</p>
               <ul class="list-group">
                 <li class="list-group-item list-group-item-light">
@@ -20,24 +18,32 @@
                 </li>
               </ul>
           </div>
+            <div class="content-section">
+                <a href="{% url 'clear_feedback' %}" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-outline-danger list-group-item-light" >Clear All Feedback
+                </a>
+            </div>
         </div>
 <main role="main" class="main">
 {% if feedback %}
 {% for entry in feedback %}
 <article class="media content-section">
-    <div class="media-body">
+    <div class="media-body" >
         <div class="article-metadata">
-            <a class="mr-2" href="#">{{ entry.user }}</a>
+            <a class="mr-2" href="#">{{ entry.user.user.username }}</a>
             <small class="text-muted">{{ entry.date_added|date:"F d, Y" }}</small>
+             <small class=" float-right
+                {% if entry.category == 'GEN' %} text-dark
+                {% elif entry.category == 'CUR' %} text-success
+                {% elif entry.category == 'INF' %} text-warning
+                {% endif %}">CATEGORY : {{entry.category}}</small>
         </div>
             {{ entry.text }}
-            {{ entry.category }}
     </div>
 </article>
-</main>
 {% endfor %}
+</main>
 {% endif %}
-<div>
-    <a href="{% url 'view_feedback' %}">View All/Home</a>
+<div class="main">
+    <a href="{% url 'view_feedback' %}" class="btn btn-outline-success">View All/Home</a>
 </div>
 {% endblock %}
