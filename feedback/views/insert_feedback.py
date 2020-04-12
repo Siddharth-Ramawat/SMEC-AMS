@@ -17,7 +17,7 @@ class FeedbackView(LoginRequiredMixin,View):
 
     def post(self, request, *args, **kwargs):
         initial = {'username':request.user.username}
-        form = FeedbackForm(request.POST, initial=initial)
+        form = FeedbackForm(request.POST, initial=initial,size=1,maxChars=400)
         if form.is_valid():
             form = form.save(commit = False)
             form.user = Profile.objects.get(id=request.user.id)
