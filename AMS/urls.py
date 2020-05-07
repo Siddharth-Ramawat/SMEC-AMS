@@ -24,7 +24,6 @@ from users import views as user_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('feedback.urls')),
-    path('', include('events.urls')),
     path('', include('dash.urls')),
     path('view_user/<int:id>', user_views.view_profile, name='user_profile'),
 ]
