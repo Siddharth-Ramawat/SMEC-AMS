@@ -2,7 +2,11 @@
 
 <html>
 <head>
-
+    <style>
+        .boxed {
+            border: 1px solid green ;
+        }
+    </style>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -31,12 +35,14 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <a class="nav-item nav-link" href="{% url 'dash-home' %}">Home</a>
+      <a class="nav-item nav-link" href="{% url 'view_events' %}">View Events</a>
       <a class="nav-item nav-link" href="{% url 'dash-about' %}">About</a>
         {% if user.is_superuser %}
             <a class="nav-item nav-link" href="{% url 'view_feedback' %}">Feedback</a>
         {% endif %}
         {% if user.is_authenticated %}
         <a class="nav-item nav-link" href="{% url 'feedback_home' %}">Insert Feedback</a>
+        <a class="nav-item nav-link" href="{% url 'events' %}">Create Events</a>
         <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
 
             <form  action="{% url 'search-users' %}" method="GET" value="{{request.GET.query}}">
