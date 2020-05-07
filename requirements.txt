@@ -4,3 +4,6 @@ django
 psycopg2
 django-crispy-forms
 Pillow
+django-mailgun
+django-mathfilters
+requests
