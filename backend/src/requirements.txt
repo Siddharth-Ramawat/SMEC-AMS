@@ -7,3 +7,6 @@ Pillow
 django-mailgun
 django-mathfilters
 requests
+djangorestframework
+markdown
+django-filter

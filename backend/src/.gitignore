@@ -1,5 +1,4 @@
 # Django #
-*.log
 *.pot
 *.pyc
 __pycache__
@@ -8,6 +7,15 @@ media
 
 # Backup files #
 *.bak
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
 
 # If you are using PyCharm #
 .idea/**/workspace.xml
@@ -47,6 +55,10 @@ wheels/
 *.manifest
 *.spec
 
+# Dependency directories
+node_modules/
+jspm_packages/
+
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
@@ -77,6 +89,7 @@ celerybeat-schedule.*
 
 # Environments
 .env
+.env.test
 .venv
 env/
 venv/
@@ -89,6 +102,12 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
 
 # Sublime Text #
 *.tmlanguage.cache
@@ -114,3 +133,9 @@ GitHub.sublime-settings
 !.vscode/launch.json
 !.vscode/extensions.json
 .history
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# All Migrations
+migrations/*
