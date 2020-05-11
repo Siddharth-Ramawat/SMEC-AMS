@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="674151bc-1a20-434e-ae75-71b4d377034f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/AMS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/AMS.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AMS/settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/dash/templates/dash/post_confirm_delete.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/dash/templates/dash/post_detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/dash/templates/dash/post_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/AMS/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/AMS/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/dash/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/dash/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/dash/templates/dash/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/dash/templates/dash/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/dash/templates/dash/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/dash/templates/dash/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/events/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/events/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -36,7 +40,8 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/media" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>

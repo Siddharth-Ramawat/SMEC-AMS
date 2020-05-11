@@ -10,7 +10,7 @@ import requests
 from libs.mailgun import Mailgun
 import json
 from django.core.mail import EmailMultiAlternatives
-from .models import Events,Poll
+from .models import Events, Poll
 
 
 
