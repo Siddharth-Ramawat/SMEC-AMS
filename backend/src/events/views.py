@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from .forms import EventsCreation
 from django.views import View
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from users.models import Profile
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -19,7 +20,15 @@ class events_creation(LoginRequiredMixin,View):
     def get(self, request, *args, **kwargs):
         initial = {'username': request.user.username}
         form = EventsCreation(instance=request.user, initial=initial)
+
+        #for updating the event
+        if kwargs:
+            event = get_object_or_404(Events,id=kwargs['id'])
+            form = EventsCreation(instance = event,initial = initial)
+            return render(request,template_name='create_event.html',context={'event_id':event.id,'form':form,'title':'Event Form','user_logged':request.user})
+
         return render(request,template_name='create_event.html',context={'form': form, 'title': 'Event Form','user_logged':request.user})
+
 
     def post(self, request, *args, **kwargs):
         initial = {'username': request.user.username}
@@ -29,9 +38,14 @@ class events_creation(LoginRequiredMixin,View):
             form.user = get_object_or_404(Profile,user_id=request.user.id)
             form.save()
             messages.success(request, send_simple_message(form.id, None))
+            if request.POST.get('event_id'):
+                messages.success(request, f'Event has been updated successfully')
+            else:
+                messages.success(request, f'Event created successfully')
             return render(request,"succes.html", context={'title': 'Event Success'})
 
         return render(request, 'create_event.html', {'form': form, 'title': 'Event Form','user_logged':request.user})
+
 
 
 class view_events(View):
@@ -43,7 +57,7 @@ class view_events(View):
         if user_id != None:
             user = Profile.objects.get(user_id=user_id)
             jsonDec = json.decoder.JSONDecoder()
-            query_results = Events.objects.all()
+            query_results = Events.objects.all().order_by('-date_added')
 
             #if the user has never voted in the poll before then we send false ids to the template
             #else we send the event ids which user has voted before as true for the template to show the vote persentages
@@ -62,6 +76,8 @@ class view_events(View):
             query_results = zip(query_results, ids)
             context = {'query_results': query_results, 'user_logged': request.user}
             return render(request, template_name="view_events.html", context=context)
+
+
     def post(self, request):
         event_id = int(request.POST.get('event_id'))
         try:

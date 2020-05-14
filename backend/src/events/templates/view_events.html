@@ -1,45 +1,52 @@
 {% extends 'dash/base.html' %}
 
 {% block content %}
+
 {% load mathfilters %}
+
 {% for item, answered in query_results %}
 <div class="row justify-content-md-center">
-<div class="col-md-6">
-  <div class="boxed">
-  Event Date: {{ item.event_date }} <br> <br>
-  Subject: {{ item.event_subject }} <br> <br>
-  Organizer: {{ item.organizer_name }} <br> <br>
-  Email:{{ item.email }} <br> <br>
-  Text: {{ item.text }}<br> <br>
-      {% if user_logged.is_authenticated %}
-      {% if not answered %}
-      <div id="poll">
-  Are you attending?<br><br>
-  <form action="#" method="post">
-      {% csrf_token %}
-    <input type="hidden" name="event_id" id="event_id" value="{{ item.id }}" />
-  Yes:
-  <input type="radio" name="result" id="yes" value="1" onclick="this.form.submit();">
-  <br>No:
-  <input type="radio" name="result" id="no" value="0" onclick="this.form.submit();">
-  </form>
-  <br> <br> <br>
-      </div>
-      {% elif answered %}
-        {% for result in poll_results %}
-            {% if result.event_id_id == item.id %}
-                {% with answer=result.yes_count|add:result.no_count %}
-                Attending?<br>
-                Yes: {{ result.yes_count|div:answer|mul:"100"|floatformat }}%<br>
-                No: {{ result.no_count|div:answer|mul:"100"|floatformat }}%<br><br>
-                {% endwith %}
-            {% endif %}
-        {% endfor %}
-        {% endif %}
-      {% endif %}
+    <div class="col-md-6">
 
-  </div>
+    <div class="boxed">
+        Event Date: {{ item.event_date }} <br> <br>
+        {% if item.user_id == user_logged.id %}
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'event-update' item.id %}">Update</a>
+        {% endif %}
+        Subject: {{ item.event_subject }} <br> <br>
+        Organizer: {{ item.organizer_name }} <br> <br>
+        Email:{{ item.email }} <br> <br>
+        Text: {{ item.text }}<br> <br>
+        {% if user_logged.is_authenticated %}
+            {% if not answered %}
+                <div id="poll">
+                    Are you attending?<br><br>
+                    <form action="#" method="post">
+                        {% csrf_token %}
+                            <input type="hidden" name="event_id" id="event_id" value="{{ item.id }}" />
+                                Yes:
+                            <input type="radio" name="result" id="yes" value="1" onclick="this.form.submit();">
+                            <br>No:
+                            <input type="radio" name="result" id="no" value="0" onclick="this.form.submit();">
+                    </form>
+                    <br> <br> <br>
+                </div>
+            {% elif answered %}
+                {% for result in poll_results %}
+                    {% if result.event_id_id == item.id %}
+                        {% with answer=result.yes_count|add:result.no_count %}
+                            Attending?<br>
+                                Yes: {{ result.yes_count|div:answer|mul:"100"|floatformat }}%<br>
+                                No: {{ result.no_count|div:answer|mul:"100"|floatformat }}%<br><br>
+                        {% endwith %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+    </div>
+    </div>
 </div>
-</div>
+
 {% endfor %}
+
 {% endblock %}

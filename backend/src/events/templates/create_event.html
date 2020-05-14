@@ -8,6 +8,9 @@
     {% if user_logged.is_authenticated %}
     <form action="{% url 'events' %}"  method="POST">
         {% csrf_token %}
+        {% if event_id %}
+            <input type="hidden" name="event_id" value={{event_id}}/>
+        {% endif %}
         <div class="form-row">
             <div class="form-group">
                 {{ form|crispy }}

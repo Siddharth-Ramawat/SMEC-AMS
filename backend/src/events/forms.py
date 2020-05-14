@@ -10,12 +10,18 @@ def present_or_future_date(value):
 
 class EventsCreation(forms.ModelForm):
     text = forms.CharField(max_length=400, widget=forms.Textarea())
-    event_date = forms.DateField(help_text="MM/DD/YYY",validators=[present_or_future_date])
+    event_date = forms.DateField(help_text="MM/DD/YYYY",validators=[present_or_future_date])
     venue = forms.CharField(empty_value='')
+
     class Meta:
          model = Events
          exclude = ['username','user']
 
+    def __init__(self,*args,**kwargs):
+        super(EventsCreation, self).__init__(*args, **kwargs)
+        instance = getattr(self, 'instance', None)
+        if instance and instance.id:
+            self.fields['email'].widget.attrs['readonly'] = True
 
 class Polls(forms.ModelForm):
     class Meta:
