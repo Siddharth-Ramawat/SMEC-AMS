@@ -17,7 +17,8 @@
 <div class="row justify-content-md-center">
     <div class="col-md-6">
      {% for item, answered in query_results %}
-        <div class="boxed">
+        <article class="media content-section">
+        <div class="media-body">
         Event Date: {{ item.event_date }} <br> <br>
         {% if item.user_id == user_logged.id %}
             <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'event-update' item.id %}">Update</a>
@@ -52,8 +53,7 @@
                 {% endfor %}
             {% endif %}
         {% endif %}
-    </div>
-
+    </div></article>
 {% endfor %}
 </div>
 </div>

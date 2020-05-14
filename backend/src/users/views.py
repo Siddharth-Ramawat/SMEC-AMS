@@ -1,6 +1,8 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from .forms import UserRegisterForm, UserUpdateForm,ProfileUpdateForm
+from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate
+from .forms import UserRegisterForm,ProfileRegisterForm, UserUpdateForm,ProfileUpdateForm
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
@@ -8,18 +10,34 @@ from django.contrib.auth.decorators import login_required
 from .models import Profile
 # Create your views here.
 
-
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            messages.success(request, f'Your account has been created, You can now login')
-            return redirect('login')
+        profile_form = ProfileRegisterForm(request.POST)
+        if form.is_valid() and profile_form.is_valid():
+            try:
+                user = form.save()
+                userprofile = Profile.objects.update_or_create(
+                    user=user,
+                    dept = profile_form.cleaned_data['dept'],
+                    registration_number = profile_form.cleaned_data['registration_number'].upper(),
+                    job_role = profile_form.cleaned_data['job_role'],
+                    work_location=profile_form.cleaned_data['work_location'],
+                    company=profile_form.cleaned_data['company']
+                )
+                username = form.cleaned_data.get('username')
+                raw_password = form.cleaned_data.get('password1')
+                messages.success(request, f'Your account has been created successfully')
+                user = authenticate(username=username, password=raw_password)
+                login(request, user)
+                return redirect('dash-home')
+            except Exception:
+                messages.warning(request,f'There was some issue')
+                return HttpResponseRedirect('users/login.html')
     else:
         form = UserRegisterForm()
-    return render(request, 'users/register.html', {'form': form})
+        profile_form = ProfileRegisterForm()
+    return render(request, 'users/register.html', {'form': form,'profile_form':profile_form})
 
 
 @login_required

@@ -4,6 +4,14 @@ from django.contrib.auth.models import User
 from PIL import Image
 
 # Create your models here.
+CSE = 'COMPUTER SCIENCE AND ENGINEERING'
+IT = 'INFORMATION TECHNOLOGY'
+ECE = 'ELECTRONICS AND COMMUNICATION ENGINEERING'
+EEE = 'ELECTRICAL AND ELECTRONIC ENGINEERING'
+ME = 'MECHANICAL ENGINEERING'
+CE = 'CIVIL ENGINEERING'
+NONE = ''
+
 class Profile(models.Model):
     """
     User objects have the following fields
@@ -14,9 +22,22 @@ class Profile(models.Model):
     password
     event_id
     """
+    DEPT_CHOICES = (
+        (NONE,''),
+        (CSE ,'COMPUTER SCIENCE AND ENGINEERING'),
+        (IT,  'INFORMATION TECHNOLOGY'),
+        (ECE , 'ELECTRONICS AND COMMUNICATION ENGINEERING'),
+        (EEE , 'ELECTRICAL AND ELECTRONIC ENGINEERING'),
+        (ME , 'MECHANICAL ENGINEERING'),
+        (CE , 'CIVIL ENGINEERING'),
+        )
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
-    dept = models.CharField(max_length=120, blank=True, null=True)
+    dept = models.CharField(max_length=120,
+                            choices=DEPT_CHOICES,
+                            default=NONE,
+                            null=True)
     registration_number = models.CharField(max_length=12, blank=True, null=True)
     job_role = models.CharField(max_length=100,blank=True,null=True)
     work_location = models.CharField(max_length=100,blank=True,null=True)
