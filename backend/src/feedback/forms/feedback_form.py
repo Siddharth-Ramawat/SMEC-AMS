@@ -23,6 +23,8 @@ class FeedbackForm(forms.ModelForm):
         size = kwargs.pop('size')
         maxChars = kwargs.pop('maxChars')
         super(FeedbackForm, self).__init__(*args, **kwargs)
+        self.fields['email'].widget.attrs['readonly'] = True
+        self.fields['username'].widget.attrs['readonly'] = True
         self.fields['text'].widget.attrs['onkeypress'] = 'return textCounter(this,this.form.counter,%d);'% maxChars
         self.fields['text'].widget.attrs['rows'] = size
         self.fields['text'].widget.attrs['cols'] ='40'

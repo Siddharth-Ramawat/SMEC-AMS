@@ -8,13 +8,11 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
 import requests
+from datetime import datetime
 from libs.mailgun import Mailgun
 import json
 from django.core.mail import EmailMultiAlternatives
 from .models import Events, Poll
-
-
-
 
 class events_creation(LoginRequiredMixin,View):
     def get(self, request, *args, **kwargs):
@@ -154,3 +152,10 @@ def send_simple_message(event_id,user_details):
         print("Something went wrong!")
 
 
+class EventsDeleteView(View):
+    def post(self,request,*args,**kwargs):
+        current_date = datetime.now()
+        past_events = Events.objects.filter(event_date__lt=current_date)
+        past_events.delete()
+        messages.warning(request, f'Past Events deleted successfully')
+        return render(request,'succes.html',context={'title':'Delete Success'})
