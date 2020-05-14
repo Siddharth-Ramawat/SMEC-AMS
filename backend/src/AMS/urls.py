@@ -26,6 +26,7 @@ urlpatterns = [
     path('', include('feedback.urls')),
     path('', include('events.urls')),
     path('', include('dash.urls')),
+    path('',include('users.urls')),
     path('view_user/<int:id>', user_views.view_profile, name='user_profile'),
 ]
 

@@ -49,7 +49,7 @@
                     <input class="form-control mr-sm-2 " type="text" name="query" value="{{request.GET.query}}"  placeholder="Search users"/>
                     <input class="btn btn-info my-2 my-sm-0 " type="submit" name="submit" value="Search"/>
                 </form>
-
+                <a class="nav-item nav-link mr-auto" href="{% url 'update_password' %}">Settings</a>
                 <a class="nav-item nav-link mr-auto" href="{% url 'logout'  %}">Logout</a>
 
             {% else %}

@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm,PasswordChangeForm
+from django.core.exceptions import ValidationError
+
 from .models import Profile
 
 
@@ -21,7 +23,6 @@ class UserUpdateForm(forms.ModelForm):
 
     def clean_email(self):
         return self.cleaned_data['email'].lower()
-
 
 class ProfileUpdateForm(forms.ModelForm):
     dept = forms.CharField(max_length=120, required=False)
