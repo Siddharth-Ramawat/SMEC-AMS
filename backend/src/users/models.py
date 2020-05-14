@@ -18,6 +18,9 @@ class Profile(models.Model):
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
     dept = models.CharField(max_length=120, blank=True, null=True)
     registration_number = models.CharField(max_length=12, blank=True, null=True)
+    job_role = models.CharField(max_length=100,blank=True,null=True)
+    work_location = models.CharField(max_length=100,blank=True,null=True)
+    company = models.CharField(max_length=200,blank=True,null=True)
     event_ids = models.TextField(null=True)
 
     def __str__(self):

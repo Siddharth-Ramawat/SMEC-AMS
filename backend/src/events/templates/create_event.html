@@ -2,6 +2,8 @@
 {% block title %}Event Form{% endblock %}
 {% load crispy_forms_tags %}
 {% block content %}
+<div class="row justify-content-md-center">
+<div class="col-md-5">
 <div class="content-section">
     {% if user_logged.is_authenticated %}
     <form action="{% url 'events' %}"  method="POST">
@@ -14,5 +16,7 @@
         <input type="submit" value="Submit">
     </form>
     {% endif %}
+</div>
+</div>
 </div>
 {% endblock %}

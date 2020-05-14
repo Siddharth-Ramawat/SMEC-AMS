@@ -1,6 +1,8 @@
 {% extends 'dash/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
+<div class="row justify-content-md-center">
+<div class="col-md-5">
  <div class="content-section">
     <form action="{% url 'feedback_home' %}"  method="POST">
         {% csrf_token %}
@@ -30,6 +32,8 @@
         </div>
     </form>
  </div>
+</div>
+</div>
 <script type="'text/javascript">
     function textCounter(field,countfield,maxLimit)
     {

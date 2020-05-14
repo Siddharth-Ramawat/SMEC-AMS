@@ -70,8 +70,9 @@ class SearchUserView(LoginRequiredMixin,View):
     def get(self,request,*args,**kwargs):
 
         if request.GET.get('query') != '':
-            search = request.GET.get('query').upper()
-            users = Profile.objects.filter(Q(dept = search)|Q(registration_number=search)).order_by('-user_id__date_joined')
+            search = request.GET.get('query')
+            users = Profile.objects.filter(Q(user__username__iexact=search)|Q(job_role__iexact=search)|Q(work_location__iexact=search)|Q(company__iexact=search)\
+                                           |Q(dept__iexact = search)|Q(registration_number__iexact=search)).order_by('-user_id__date_joined')
             context = {
                 'title': 'Search User',
                 'users': users,
