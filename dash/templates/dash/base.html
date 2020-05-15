@@ -1,12 +1,7 @@
 {% load static %}
 
-<style>
+
 <head>
-    <style>
-        .boxed {
-            border: 1px solid green ;
-        }
-    </style>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -27,14 +22,14 @@
     {% endif %}
 </head>
 <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3 ">
+        <nav class="navbar navbar-expand-xl justify-content-between navbar-dark bg-dark mb-3 ">
         <a class="navbar-brand" href="/">AMS</a>
         <button aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle Navigation"
             class="navbar-toggler" data-target="#navbarNavAltMarkup" data-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <a class="nav-item nav-link" href="{% url 'dash-home' %}">Home</a>
+        <a class="nav-item nav-link" href="{% url 'dash-home' %}">Home <span class="sr-only">(current)</span></a>
         <a class="nav-item nav-link" href="{% url 'view_events' %}">View Events</a>
         <a class="nav-item nav-link" href="{% url 'dash-about' %}">About</a>
             {% if user.is_superuser %}
@@ -47,11 +42,11 @@
                 <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
                 <form  class="form-inline flex-nowrap rounded p-1 my-2 my-lg-0" action="{% url 'search-users' %}" method="GET" value="{{request.GET.query}}">
                     <input class="form-control mr-sm-2 " type="text" name="query" value="{{request.GET.query}}"  placeholder="Search users"/>
-                    <input class="btn btn-info my-2 my-sm-0 " type="submit" name="submit" value="Search"/>
+                    <input class="btn btn-outline-primary my-2 my-sm-0 " type="submit" name="submit" value="Search"/>
                 </form>
                 <a class="nav-item nav-link mr-auto" href="{% url 'update_password' %}">Settings</a>
 
-                <a class="nav-item nav-link mr-auto" href="{% url 'logout'  %}">Logout</a>
+                <a class="nav-item nav-link my-sm-2" href="{% url 'logout'  %}">Logout</a>
             {% else %}
                 <a class="nav-item nav-link" href="{% url 'login'  %}">Login</a>
                 <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
@@ -94,7 +89,7 @@
     <footer>Designed by : Team AMS</footer>
 </body>
 <style>
-    footer {
+footer {
     position: fixed;
     bottom: 0;
     height : 20px;
