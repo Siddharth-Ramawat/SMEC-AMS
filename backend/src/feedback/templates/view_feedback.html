@@ -29,7 +29,7 @@
 <article class="media content-section">
     <div class="media-body" >
         <div class="article-metadata">
-            <a class="mr-2" href="#">{{ entry.user.user.username }}</a>
+            <a class="mr-2" href="{% url 'user_profile' entry.user.id %}">{{ entry.user.user.username }}</a>
             <small class="text-muted">{{ entry.date_added|date:"F d, Y" }}</small>
              <small class=" float-right
                 {% if entry.category == 'GEN' %} text-dark

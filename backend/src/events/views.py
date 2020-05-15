@@ -32,13 +32,17 @@ class events_creation(LoginRequiredMixin,View):
         initial = {'username': request.user.username}
         form = EventsCreation(request.POST, initial=initial)
         if form.is_valid():
+            #update_or_create should be done
             form = form.save(commit = False)
             form.user = get_object_or_404(Profile,user_id=request.user.id)
-            form.save()
-            messages.success(request, send_simple_message(form.id, None))
             if request.POST.get('event_id'):
+                event = Events.objects.get(pk = int(request.POST.get('event_id').strip('/')))
+                form = EventsCreation(data=request.POST,instance=event)
+                form.save()
                 messages.success(request, f'Event has been updated successfully')
             else:
+                form.save()
+                messages.success(request, send_simple_message(form.id, None))
                 messages.success(request, f'Event created successfully')
             return render(request,"succes.html", context={'title': 'Event Success'})
 
