@@ -2,6 +2,17 @@ from django.contrib.postgres.fields import ArrayField, IntegerRangeField
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
+import datetime
+from django.core.validators import MaxValueValidator, MinValueValidator
+
+
+def current_year():
+    return datetime.date.today().year
+
+
+def max_value_current_year(value):
+    return MaxValueValidator(current_year())(value)
+
 
 # Create your models here.
 CSE = 'COMPUTER SCIENCE AND ENGINEERING'
@@ -11,6 +22,7 @@ EEE = 'ELECTRICAL AND ELECTRONIC ENGINEERING'
 ME = 'MECHANICAL ENGINEERING'
 CE = 'CIVIL ENGINEERING'
 NONE = ''
+
 
 class Profile(models.Model):
     """
@@ -42,6 +54,7 @@ class Profile(models.Model):
     job_role = models.CharField(max_length=100,blank=True,null=True)
     work_location = models.CharField(max_length=100,blank=True,null=True)
     company = models.CharField(max_length=200,blank=True,null=True)
+    passout_year = models.PositiveIntegerField(default=current_year(), validators=[MinValueValidator(1984), max_value_current_year])
     event_ids = models.TextField(null=True)
 
     def __str__(self):
@@ -58,3 +71,6 @@ class Profile(models.Model):
             img.thumbnail(output_size)
             img.save(self.image.path)
 
+    @staticmethod
+    def year_choices():
+        return [(r, r) for r in range(1984, datetime.date.today().year + 1)]

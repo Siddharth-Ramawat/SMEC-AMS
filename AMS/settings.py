@@ -29,14 +29,14 @@ environ.Env.read_env('.env')
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG=True
-SECRET_KEY="jk96@1(ao=xpd(rsj_$7v)oufimw*h^txq^19)()w5az_&@z%"
-DATABASE_USER='postgres'
-DATABASE_PASSWORD='dingoo12'
-DATABASE_PORT='5432'
+# SECRET_KEY="jk96@1(ao=xpd(rsj_$7v)oufimw*h^txq^19)()w5az_&@z%"
+# DATABASE_USER='postgres'
+# DATABASE_PASSWORD='dingoo12'
+# DATABASE_PORT='5432'
 
 ALLOWED_HOSTS = ['*']
 
@@ -109,10 +109,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'ams',  # name of the database
-        'USER': DATABASE_USER,  # create a user in postgres of this name
-        'PASSWORD': DATABASE_PASSWORD,  # set this as default password for the user created above
+        'USER': env('DATABASE_USER'),  # create a user in postgres of this name
+        'PASSWORD': env('DATABASE_PASSWORD'),  # set this as default password for the user created above
         'HOST': 'localhost',
-        'PORT': DATABASE_PORT,
+        'PORT': env('DATABASE_PORT'),
     }
 }
 
