@@ -38,7 +38,7 @@ DATABASE_USER='postgres'
 DATABASE_PASSWORD='dingoo12'
 DATABASE_PORT='5432'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -149,7 +149,7 @@ USE_TZ = True
 
 
 def show_toolbar(request):
-    return True
+    return False
 
 
 DEBUG_TOOLBAR_CONFIG = {
