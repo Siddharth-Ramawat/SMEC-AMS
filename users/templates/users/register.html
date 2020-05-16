@@ -3,29 +3,31 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="row justify-content-md-center">
-<div class="col-md-5">
+<div class="wrapper fadeInDown">
+  <div id="formContent">
     <div class="content-section">
+        <div class="fadeIn first">
+        <img src="/media/smec_logo.jpg" id="icon" alt="User Icon" />
+        </div>
         <form method="POST">
             <!--Cross Site Request Forgery Token - To protect our site against some attacks-->
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Join Today</legend>
+                <legend id="fadeIn first" class="border-bottom mb-4 py-1 fadeIn second">Join Today</legend>
                 {{form|crispy}}
             </fieldset>
-            <fieldset class="form-group">
+            <fieldset id="fadeIn third" class="form-group">
                 {{profile_form|crispy}}
             </fieldset>
             <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Sign Up</button>
+                <button class="btn btn-outline-info fadeIn third" type="submit">Sign Up</button>
             </div>
         </form>
-        <div class="border-top pt-3">
-            <small class="text-muted">
+        <div id="formFooter" class="border-top pt-3">
+            <small id="fadeIn fourth" class="text-muted">
                 Already Have An Account? <a class="ml-2" href="{% url 'login'%}">Sign In</a>
             </small>
         </div>
     </div>
-</div>
 </div>
 {% endblock content %}

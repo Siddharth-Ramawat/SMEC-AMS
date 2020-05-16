@@ -1,6 +1,11 @@
 {% extends "dash/base.html" %}
 {% load crispy_forms_tags %}
-{% block content %}
+{% load static %}
+
+{% comment %} <link rel="stylesheet" type="text/css" href="{% static 'users/login.css' %}">
+<script type="text/javascript" src="{% static 'users/login.js' %}"></script> {% endcomment %}
+{% comment %} 
+ {% block content %}
 <div class="row justify-content-md-center">
 <div class="col-md-5">
     <div class="content-section" >
@@ -21,5 +26,39 @@
         </div>
     </div>
 </div>
+</div>
+{% endblock content %}  {% endcomment %}
+
+
+{% block content %}
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="/media/smec_logo.jpg" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <form method="POST" class="border border-light">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4 py-1 fadeIn second">Log In</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info fadeIn fourth" type="submit">Login</button>
+            </div>
+    </form>
+
+    <!-- Remind SignUP -->
+    <div id="formFooter" class="border-top">
+            <small class="text-muted">
+                Need An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
+            </small>
+    </div>
+
+  </div>
 </div>
 {% endblock content %}

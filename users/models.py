@@ -11,7 +11,7 @@ def current_year():
 
 
 def max_value_current_year(value):
-    return MaxValueValidator(current_year())(value)
+    return MaxValueValidator(current_year() + 1)(value)
 
 
 # Create your models here.
@@ -73,4 +73,4 @@ class Profile(models.Model):
 
     @staticmethod
     def year_choices():
-        return [(r, r) for r in range(1984, datetime.date.today().year + 1)]
+        return [(r, r) for r in range(1984, datetime.date.today().year + 2)]

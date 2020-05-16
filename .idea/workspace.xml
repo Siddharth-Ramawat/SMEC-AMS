@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="674151bc-1a20-434e-ae75-71b4d377034f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/users/migrations/0008_profile_passout_year.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AMS/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/AMS/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dash/static/dash/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/dash/static/dash/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dash/templates/dash/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/dash/templates/dash/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/signals.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/templates/users/view_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/view_profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
