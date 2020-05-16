@@ -71,7 +71,7 @@ class SearchUserView(LoginRequiredMixin,View):
 
         if request.GET.get('query') != '':
             search = request.GET.get('query')
-            users = Profile.objects.filter(Q(user__username__icontains=search)|Q(job_role__iexact=search)|Q(work_location__iexact=search)|Q(company__iexact=search)\
+            users = Profile.objects.filter(Q(user__username__icontains=search)|Q(job_role__icontains=search)|Q(work_location__icontains=search)|Q(company__icontains=search)\
                                            |Q(dept__iexact = search)|Q(registration_number__iexact=search)).order_by('-user_id__date_joined')
             context = {
                 'title': 'Search User',
