@@ -91,9 +91,7 @@ class view_events(View):
             #check if the record has been already there for the poll with this current user or create one
             poll = Poll.objects.get_or_create(event_id=event_id)[0]
             auth_id = request.user.id
-            user_id = Profile.objects.get(user_id=auth_id)
-            user_id = user_id.id
-            user = Profile.objects.get(user_id = user_id)
+            user = Profile.objects.get(user_id=auth_id)
 
             #incrementing the yes count if poll result is 1 then increment yes count
             if(int(request.POST.get('result'))):
@@ -117,8 +115,8 @@ class view_events(View):
             user.save()
         except Exception:
             event = Events.objects.get(id = event_id)
-            user_id = request.user.id
-            user = Profile.objects.get(user_id=user_id)
+            auth_id = request.user.id
+            user = Profile.objects.get(user_id=auth_id)
             yes_count = 0
             no_count = 0
             if (int(request.POST.get('result'))):
