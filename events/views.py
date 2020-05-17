@@ -55,7 +55,11 @@ class view_events(View):
     def get(self, request):
         poll = Poll.objects.all()
         #taking current user id
-        user_id = request.user.id
+        auth_id = request.user.id
+        user_id = None
+        if auth_id != None:
+            user_id = Profile.objects.get(user_id=auth_id)
+            user_id = user_id.id
         #if the user is logged in we show polls for user to vote
         if user_id != None:
             user = Profile.objects.get(user_id=user_id)
