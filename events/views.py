@@ -62,7 +62,7 @@ class view_events(View):
             user_id = user_id.id
         #if the user is logged in we show polls for user to vote
         if user_id != None:
-            user = Profile.objects.get(user_id=user_id)
+            user = Profile.objects.get(id=user_id)
             jsonDec = json.decoder.JSONDecoder()
             query_results = Events.objects.all().order_by('-date_added')
 
