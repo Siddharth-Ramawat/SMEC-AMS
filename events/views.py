@@ -90,7 +90,9 @@ class view_events(View):
         try:
             #check if the record has been already there for the poll with this current user or create one
             poll = Poll.objects.get_or_create(event_id=event_id)[0]
-            user_id = request.user.id
+            auth_id = request.user.id
+            user_id = Profile.objects.get(user_id=auth_id)
+            user_id = user_id.id
             user = Profile.objects.get(user_id = user_id)
 
             #incrementing the yes count if poll result is 1 then increment yes count
