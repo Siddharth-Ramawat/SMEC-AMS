@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="674151bc-1a20-434e-ae75-71b4d377034f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dash/templates/dash/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/dash/templates/dash/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/events/templates/create_event.html" beforeDir="false" afterPath="$PROJECT_DIR$/events/templates/create_event.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feedback/templates/insert_feedback.html" beforeDir="false" afterPath="$PROJECT_DIR$/feedback/templates/insert_feedback.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feedback/templates/view_feedback.html" beforeDir="false" afterPath="$PROJECT_DIR$/feedback/templates/view_feedback.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/events/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/events/forms.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,14 +39,14 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Sidd\My Programs\AMS\users\templates\users" />
-      <recent name="D:\Sidd\My Programs\AMS\dash\templates\dash" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Sidd\My Programs\AMS\media" />
       <recent name="D:\Sidd\My Programs\AMS\users\templates" />
       <recent name="D:\Sidd\My Programs\AMS\dash\templates" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Sidd\My Programs\AMS\users\templates\users" />
+      <recent name="D:\Sidd\My Programs\AMS\dash\templates\dash" />
     </key>
   </component>
   <component name="SvnConfiguration">
