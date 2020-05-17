@@ -40,7 +40,7 @@
                         <span style="font-size: 2em; color: darkslategray;">
                             <i class="fas fa-user"></i>
                         </span>
-                            <b>Organizer : {{ item.organizer_name }}</b>
+                            <b>Organizer : <a href="{% if user_logged %}{% url 'user_profile' item.user_id %}{% else %} # {% endif %}">{{ item.organizer_name }}</a></b>
                         </small>
                         </div>
                     </div>
