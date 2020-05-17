@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .forms import EventsCreation
 from django.views import View
@@ -42,7 +43,7 @@ class events_creation(LoginRequiredMixin,View):
                 messages.success(request, f'Event has been updated successfully')
             else:
                 form.save()
-                messages.success(request, send_creation_message(form.id, None))
+                messages.success(request, send_creation_message(form.id))
                 messages.success(request, f'Event created successfully')
             return render(request,"succes.html", context={'title': 'Event Success'})
 
