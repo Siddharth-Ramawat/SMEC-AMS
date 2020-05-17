@@ -16,7 +16,7 @@ class DateInput(forms.DateInput):
 
 class EventsCreation(forms.ModelForm):
     text = forms.CharField(max_length=400, widget=forms.Textarea())
-    event_date = forms.DateField(help_text="MM/DD/YYYY", validators=[present_or_future_date], widget=DateInput)
+    event_date = forms.DateField(validators=[present_or_future_date], widget=DateInput)
     venue = forms.CharField(empty_value='')
 
     class Meta:

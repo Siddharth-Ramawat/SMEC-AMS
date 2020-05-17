@@ -74,24 +74,25 @@ class view_events(View):
                 ids = [True if x.id in jsonDec.decode(user.event_ids) else False for x in query_results]
 
             query_results = zip(query_results,ids)
-            context={'query_results':query_results,'user_logged':request.user,'poll_results':poll}
+            context={'query_results':query_results,'user_logged':request.user,'profile_id':user_id,'poll_results':poll}
             return render(request, template_name="view_events.html",context=context)
         #this is the part where we won't send the poll info to the template to display
         else:
             query_results = Events.objects.all()
             ids = [False] * len(query_results)
             query_results = zip(query_results, ids)
-            context = {'query_results': query_results, 'user_logged': request.user}
+            context = {'query_results': query_results,'profile_id':user_id, 'user_logged': request.user}
             return render(request, template_name="view_events.html", context=context)
 
 
     def post(self, request):
         event_id = int(request.POST.get('event_id'))
+        auth_id = request.user.id
+        user = Profile.objects.get(user_id=auth_id)
+        user_id = user.id
         try:
             #check if the record has been already there for the poll with this current user or create one
             poll = Poll.objects.get_or_create(event_id=event_id)[0]
-            auth_id = request.user.id
-            user = Profile.objects.get(user_id=auth_id)
 
             #incrementing the yes count if poll result is 1 then increment yes count
             if(int(request.POST.get('result'))):
@@ -115,8 +116,6 @@ class view_events(View):
             user.save()
         except Exception:
             event = Events.objects.get(id = event_id)
-            auth_id = request.user.id
-            user = Profile.objects.get(user_id=auth_id)
             yes_count = 0
             no_count = 0
             if (int(request.POST.get('result'))):
@@ -141,17 +140,19 @@ class view_events(View):
         ids = [True if x.id in jsonDec.decode(user.event_ids) else False for x in query_results]
         query_results = zip(query_results, ids)
         poll = Poll.objects.all()
-        context = {'query_results': query_results,'user_logged': request.user,'poll_results':poll}
+        context = {'query_results': query_results,'user_logged': request.user,'profile_id':user_id,'poll_results':poll}
         return render(request, template_name="view_events.html",context=context)
 
 def send_registration_message(event_id, user_details):
-    details = Events.objects.get(id=event_id)
-    Mailgun.send_mail([user_details.email], "Thankyou For showing interest!", "Thankyou For showing interest!",
-                      "<p>Hi " + str(
-                          user_details.username) + ",<br><br> Thankyou for registering for the event - " + str(
-                          details.event_subject) + ".The Event will be held on " + str(
-                          details.event_date) + " make sure you are available.<br><br> Regards,<br> Team AMS <p>")
-
+    try:
+        details = Events.objects.get(id=event_id)
+        Mailgun.send_mail([user_details.email], "Thankyou For showing interest!", "Thankyou For showing interest!",
+                          "<p>Hi " + str(
+                              user_details.username) + ",<br><br> Thankyou for registering for the event - " + str(
+                              details.event_subject) + ".The Event will be held on " + str(
+                              details.event_date) + " make sure you are available.<br><br> Regards,<br> Team AMS <p>")
+    except Exception:
+        print("Something went wrong!")
 
 def send_creation_message(event_id):
     try:
@@ -178,7 +179,7 @@ def send_delete_notif(event_id):
             recievers.append(user.email)
         details = Events.objects.get(id=event_id)
         Mailgun.send_mail(recievers, "This Event Has Been Deleted", "This Event Has Been Deleted",
-                          "<p>The Below Evevnt has been <b>Deleted</b>: <br><br> Title: " + str(
+                          "<p>The Below Event has been <b>Deleted</b>: <br><br> Title: " + str(
                               details.event_subject) + "<br>Event Date: " + str(
                               details.event_date) + "<br>Organizer name: " + str(
                               details.organizer_name) + "<br>Details: " + str(
@@ -201,14 +202,15 @@ class DeleteSpecificEvent(View):
         id = request.POST.get('event_id')
         event = Events.objects.get(id = id)
         for user in Profile.objects.all():
-            jsonDec = json.decoder.JSONDecoder()
-            ids = jsonDec.decode(user.event_ids)
-            try:
-                ids.remove(int(id))
-                user.event_ids = json.dumps(ids)
-                user.save()
-            except Exception:
-                print('event not present in the list')
+            if(user.event_ids != None):
+                jsonDec = json.decoder.JSONDecoder()
+                ids = jsonDec.decode(user.event_ids)
+                try:
+                    ids.remove(int(id))
+                    user.event_ids = json.dumps(ids)
+                    user.save()
+                except Exception:
+                    print('event not present in the list')
         send_delete_notif(id)
         event.delete()
-        return HttpResponseRedirect(r"/view_events")
+        return HttpResponseRedirect("/view_events")
