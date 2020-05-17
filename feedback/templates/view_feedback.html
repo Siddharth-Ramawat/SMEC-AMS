@@ -20,6 +20,7 @@
             <a class="nav-link btn-lg" role="button" aria-pressed="false" href="{% url 'view_cat_feedback' 'INF' %}">View Infrastructure Feedback</a>
           </li>
         </ul>
+          <a href="{% url 'clear_feedback' %}"  class="nav-link btn-lg" >Clear All Feedback</a>
 </nav>
 <main role="main" class="main">
 {% if feedback %}
