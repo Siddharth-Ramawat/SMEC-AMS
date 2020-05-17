@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .forms import EventsCreation
 from django.views import View
@@ -42,7 +43,7 @@ class events_creation(LoginRequiredMixin,View):
                 messages.success(request, f'Event has been updated successfully')
             else:
                 form.save()
-                messages.success(request, send_simple_message(form.id, None))
+                messages.success(request, send_creation_message(form.id))
                 messages.success(request, f'Event created successfully')
             return render(request,"succes.html", context={'title': 'Event Success'})
 
@@ -91,7 +92,7 @@ class view_events(View):
             #incrementing the yes count if poll result is 1 then increment yes count
             if(int(request.POST.get('result'))):
                 poll.yes_count += 1
-                send_simple_message(event_id, request.user)
+                send_registration_message(event_id, request.user)
             #and if it is 0 then increment no count
             else:
                 poll.no_count += 1
@@ -115,7 +116,7 @@ class view_events(View):
             no_count = 0
             if (int(request.POST.get('result'))):
                 yes_count = 1
-                send_simple_message(event_id, request.user)
+                send_registration_message(event_id, request.user)
             else:
                 no_count = 1
             poll = Poll(event_id=event,yes_count=yes_count,no_count=no_count)
@@ -137,21 +138,29 @@ class view_events(View):
         context = {'query_results': query_results,'user_logged': request.user,'poll_results':poll}
         return render(request, template_name="view_events.html",context=context)
 
-def send_simple_message(event_id,user_details):
+def send_registration_message(event_id, user_details):
+    details = Events.objects.get(id=event_id)
+    Mailgun.send_mail([user_details.email], "Thankyou For showing interest!", "Thankyou For showing interest!",
+                      "<p>Hi " + str(
+                          user_details.username) + ",<br><br> Thankyou for registering for the event - " + str(
+                          details.event_subject) + ".The Event will be held on " + str(
+                          details.event_date) + " make sure you are available.<br><br> Regards,<br> Team AMS <p>")
+
+
+def send_creation_message(event_id):
     try:
         recievers = []
         #gather list of mails in the database
         for user in User.objects.all():
             recievers.append(user.email)
         details = Events.objects.get(id = event_id)
-        #triggering this when event is created
-        if user_details == None:
-            Mailgun.send_mail(recievers, "Checkout this Event!","Checkout this Event!",
-                "<p>Title: "+str(details.event_subject)+"<br>Event Date: "+str(details.event_date)+"<br>Organizer name: "+ str(details.organizer_name)+"<br>Details: "+str(details.text)+"<br> Venue: "+details.venue+"<br><br> please write to kamatalaashish@gmail.com in case of any queries </p>")
-        #triggering this when yes clikced on poll
-        else:
-            Mailgun.send_mail([user_details.email], "Thankyou For showing interest!", "Thankyou For showing interest!",
-                    "<p>Hi "+str(user_details.username)+",<br><br> Thankyou for registering for the event - "+str(details.event_subject)+".The Event will be held on "+str(details.event_date)+" make sure you are available.<br><br> Regards,<br> Team AMS <p>")
+        details = Events.objects.get(id=event_id)
+        Mailgun.send_mail(recievers, "Checkout this Event!", "Checkout this Event!",
+                          "<p>Title: " + str(details.event_subject) + "<br>Event Date: " + str(
+                              details.event_date) + "<br>Organizer name: " + str(
+                              details.organizer_name) + "<br>Details: " + str(
+                              details.text) + "<br> Venue: " + details.venue + "<br><br> please write to " + str(
+                              details.email) + " in case of any queries </p>")
     except Exception:
         print("Something went wrong!")
 
@@ -163,3 +172,10 @@ class EventsDeleteView(View):
         past_events.delete()
         messages.warning(request, f'Past Events deleted successfully')
         return render(request,'succes.html',context={'title':'Delete Success'})
+
+class DeleteSpecificEvent(View):
+    def post(self, request, *args, **kwargs):
+        id = request.POST.get('event_id')
+        event = Events.objects.get(id = id)
+        event.delete()
+        return HttpResponseRedirect(r"/view_events")
