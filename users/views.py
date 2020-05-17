@@ -19,21 +19,21 @@ def register(request):
         if form.is_valid() and profile_form.is_valid():
             try:
                 user = form.save()
-                userprofile = Profile.objects.update_or_create(
-                    user=user,
-                    dept=profile_form.cleaned_data['dept'],
-                    registration_number=profile_form.cleaned_data['registration_number'].upper(),
-                    job_role=profile_form.cleaned_data['job_role'],
-                    work_location=profile_form.cleaned_data['work_location'],
-                    company=profile_form.cleaned_data['company']
-                )
+                userprofile = Profile.objects.get(user=user)
+                userprofile.dept=profile_form.cleaned_data['dept']
+                userprofile.registration_number=profile_form.cleaned_data['registration_number'].upper()
+                userprofile.job_role=profile_form.cleaned_data['job_role']
+                userprofile.work_location=profile_form.cleaned_data['work_location']
+                userprofile.company=profile_form.cleaned_data['company']
+                userprofile.save()
                 username = form.cleaned_data.get('username')
                 raw_password = form.cleaned_data.get('password1')
                 messages.success(request, f'Your account has been created successfully')
                 user = authenticate(username=username, password=raw_password)
                 login(request, user)
                 return redirect('dash-home')
-            except Exception:
+            except Exception as e:
+                print(e)
                 messages.warning(request, f'There was some issue')
                 return redirect('login')
     else:
