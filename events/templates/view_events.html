@@ -40,7 +40,7 @@
                         <span style="font-size: 2em; color: darkslategray;">
                             <i class="fas fa-user"></i>
                         </span>
-                            <b>Organizer : <a  href="{% if profile_id %} {% url 'user_profile' profile_id %} {% else %} # {% endif %}">{{ item.organizer_name }}</a></b>
+                            <b>Organizer : <a  href="{% if profile_id %} {% url 'user_profile' item.user_id %} {% else %} # {% endif %}">{{ item.organizer_name }}</a></b>
                         </small>
                         </div>
                     </div>
