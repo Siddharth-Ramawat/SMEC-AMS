@@ -14,7 +14,7 @@
                <small class="text-muted">{{user.dept}}</small>
                <small class="text-muted">{{user.registration_number}}</small>
             </div>
-            <h2><a class="article-title" href="{% url 'user_profile' user.id %}">{{user.user.username}}</a></h2>
+            <h2><a class="article-title" href="{% url 'user_profile' user.user.id %}">{{user.user.username}}</a></h2>
             <p class="article-content">{{ user.dept }}</p>
           </div>
         </article>
