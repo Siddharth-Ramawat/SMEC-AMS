@@ -20,7 +20,7 @@ class FeedbackView(LoginRequiredMixin,View):
         form = FeedbackForm(request.POST, initial=initial,size=8,maxChars=400)
         if form.is_valid():
             form = form.save(commit = False)
-            form.user = Profile.objects.get(id=request.user.id)
+            form.user = Profile.objects.get(user_id=request.user.id)
             form.save()
             messages.success(request, f'Feedback has been submitted successfully')
             return render(request, "success.html", context={'title': 'Feedback Success'})

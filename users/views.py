@@ -69,8 +69,11 @@ def profile(request):
 
 @login_required
 def view_profile(request, *args, **kwargs):
-    if request.method == 'GET':
+    """
+    should pass the id of the user object as an argument to this function for this to work
+    """
 
+    if request.method == 'GET':
         profile_user = Profile.objects.get(user_id=kwargs['id'])
         # user = User.objects.get(id = kwargs['id'])
         # profile_user = Profile.objects.get(user_id = user.id)
