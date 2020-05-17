@@ -51,12 +51,12 @@
                     <div class="col sm-8">
                         <b>Event</b> : {{ item.event_subject }} <br> <br>
                     </div>
-                    {% if item.user_id == user_logged.id %}
+                    {% if item.user_id == profile_id %}
                     <div class="float-sm-right">
                             <a class="btn btn-outline-info btn-sm mt-1 mb-1" href="{% url 'event-update' item.id %}">Update</a>
                     </div>
                     <div class="float-sm-right">
-                        {% if item.user_id == user_logged.id %}
+                        {% if item.user_id == profile_id %}
                             <form action="{% url 'delete-event' %}" onsubmit="return confirm('Are you sure you want to delete this event?')" method="post" >
                                 {% csrf_token %}
                             <input type="hidden" name="event_id" value="{{ item.id }}">
@@ -88,14 +88,20 @@
                     {% for result in poll_results %}
                         {% if result.event_id_id == item.id %}
                             {% with answer=result.yes_count|add:result.no_count %}
-                                Attending?<br>
-                                Yes:<div class="progress" style="width:50%">
+                                Attending?<br><br>
+                                <p class="progress-label">
+                                    Yes:
+                                </p>
+                                <div class="progress" style="width:50%; height:25px; border-radius: 25px;">
                                     <div class="progress-bar" role="progressbar"
                                             aria-valuemin="0" aria-valuemax="100" style="-webkit-border-radius: 25px; border-radius: 25px; width:{{ result.yes_count|div:answer|mul:100|floatformat }}%">
                                     {{ result.yes_count|div:answer|mul:"100"|floatformat }}%
                                     </div>
                                 </div><br>
-                                No: <div class="progress" style="width:50%">
+                                <p class="progress-label">
+                                    No:
+                                </p>
+                                <div class="progress" style="width:50%; height:25px; border-radius: 25px;">
                                     <div class="progress-bar" role="progressbar"
                                             aria-valuemin="0" aria-valuemax="100" style="border-radius: 25px; width:{{ result.no_count|div:answer|mul:100|floatformat }}%" >
                                     {{ result.no_count|div:answer|mul:"100"|floatformat }}%

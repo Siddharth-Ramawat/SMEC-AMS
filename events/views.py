@@ -74,24 +74,25 @@ class view_events(View):
                 ids = [True if x.id in jsonDec.decode(user.event_ids) else False for x in query_results]
 
             query_results = zip(query_results,ids)
-            context={'query_results':query_results,'user_logged':request.user,'poll_results':poll}
+            context={'query_results':query_results,'user_logged':request.user,'profile_id':user_id,'poll_results':poll}
             return render(request, template_name="view_events.html",context=context)
         #this is the part where we won't send the poll info to the template to display
         else:
             query_results = Events.objects.all()
             ids = [False] * len(query_results)
             query_results = zip(query_results, ids)
-            context = {'query_results': query_results, 'user_logged': request.user}
+            context = {'query_results': query_results,'profile_id':user_id, 'user_logged': request.user}
             return render(request, template_name="view_events.html", context=context)
 
 
     def post(self, request):
         event_id = int(request.POST.get('event_id'))
+        auth_id = request.user.id
+        user = Profile.objects.get(user_id=auth_id)
+        user_id = user.id
         try:
             #check if the record has been already there for the poll with this current user or create one
             poll = Poll.objects.get_or_create(event_id=event_id)[0]
-            auth_id = request.user.id
-            user = Profile.objects.get(user_id=auth_id)
 
             #incrementing the yes count if poll result is 1 then increment yes count
             if(int(request.POST.get('result'))):
@@ -115,8 +116,6 @@ class view_events(View):
             user.save()
         except Exception:
             event = Events.objects.get(id = event_id)
-            auth_id = request.user.id
-            user = Profile.objects.get(user_id=auth_id)
             yes_count = 0
             no_count = 0
             if (int(request.POST.get('result'))):
@@ -141,7 +140,7 @@ class view_events(View):
         ids = [True if x.id in jsonDec.decode(user.event_ids) else False for x in query_results]
         query_results = zip(query_results, ids)
         poll = Poll.objects.all()
-        context = {'query_results': query_results,'user_logged': request.user,'poll_results':poll}
+        context = {'query_results': query_results,'user_logged': request.user,'profile_id':user_id,'poll_results':poll}
         return render(request, template_name="view_events.html",context=context)
 
 def send_registration_message(event_id, user_details):
@@ -211,4 +210,4 @@ class DeleteSpecificEvent(View):
                 print('event not present in the list')
         send_delete_notif(id)
         event.delete()
-        return HttpResponseRedirect(r"/view_events")
+        return HttpResponseRedirect("/view_events")
