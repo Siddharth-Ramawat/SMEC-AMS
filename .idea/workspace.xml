@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="674151bc-1a20-434e-ae75-71b4d377034f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/events/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/events/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dash/templates/dash/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/dash/templates/dash/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
