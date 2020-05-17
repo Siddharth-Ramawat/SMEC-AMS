@@ -177,7 +177,7 @@ def send_delete_notif(event_id):
             recievers.append(user.email)
         details = Events.objects.get(id=event_id)
         Mailgun.send_mail(recievers, "This Event Has Been Deleted", "This Event Has Been Deleted",
-                          "<p>The Below Evevnt has been <b>Deleted</b>: <br><br> Title: " + str(
+                          "<p>The Below Event has been <b>Deleted</b>: <br><br> Title: " + str(
                               details.event_subject) + "<br>Event Date: " + str(
                               details.event_date) + "<br>Organizer name: " + str(
                               details.organizer_name) + "<br>Details: " + str(
@@ -200,14 +200,15 @@ class DeleteSpecificEvent(View):
         id = request.POST.get('event_id')
         event = Events.objects.get(id = id)
         for user in Profile.objects.all():
-            jsonDec = json.decoder.JSONDecoder()
-            ids = jsonDec.decode(user.event_ids)
-            try:
-                ids.remove(int(id))
-                user.event_ids = json.dumps(ids)
-                user.save()
-            except Exception:
-                print('event not present in the list')
+            if(user.event_ids != None):
+                jsonDec = json.decoder.JSONDecoder()
+                ids = jsonDec.decode(user.event_ids)
+                try:
+                    ids.remove(int(id))
+                    user.event_ids = json.dumps(ids)
+                    user.save()
+                except Exception:
+                    print('event not present in the list')
         send_delete_notif(id)
         event.delete()
         return HttpResponseRedirect("/view_events")
