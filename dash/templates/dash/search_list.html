@@ -9,7 +9,7 @@
           <img class="rounded-circle article-img"  src="{{user.image.url}}" alt="Profile Pic">
           <div class="media-body">
             <div class="article-metadata">
-              <a class="mr-2" href="{% url 'user_profile' user.id %}">{{ user.user.username }}</a>
+              <a class="mr-2" href="{% url 'user_profile' user.user.id %}">{{ user.user.username }}</a>
               <small class="text-muted">{{user.user.email}}</small>
                <small class="text-muted">{{user.dept}}</small>
                <small class="text-muted">{{user.registration_number}}</small>
