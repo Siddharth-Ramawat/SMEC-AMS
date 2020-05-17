@@ -81,7 +81,7 @@ class view_events(View):
             query_results = Events.objects.all()
             ids = [False] * len(query_results)
             query_results = zip(query_results, ids)
-            context = {'query_results': query_results,'profile_id':user_id, 'user_logged': request.user}
+            context = {'query_results': query_results,'profile_id':None, 'user_logged': None}
             return render(request, template_name="view_events.html", context=context)
 
 

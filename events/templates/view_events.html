@@ -40,7 +40,7 @@
                         <span style="font-size: 2em; color: darkslategray;">
                             <i class="fas fa-user"></i>
                         </span>
-                            <b>Organizer : <a href="{% url 'user_profile' profile_id %}">{{ item.organizer_name }}</a></b>
+                            <b>Organizer : <a  href="{% if profile_id %} {% url 'user_profile' profile_id %} {% else %} # {% endif %}">{{ item.organizer_name }}</a></b>
                         </small>
                         </div>
                     </div>
@@ -51,6 +51,7 @@
                     <div class="col sm-8">
                         <b>Event</b> : {{ item.event_subject }} <br> <br>
                     </div>
+                    {% if user_logged %}
                     {% if item.user_id == user_logged.id %}
                     <div class="float-sm-right">
                             <a class="btn btn-outline-info btn-sm mt-1 mb-1" href="{% url 'event-update' item.id %}">Update</a>
@@ -64,6 +65,7 @@
                             </form>
                         {% endif %}
                     </div>
+                    {% endif %}
                     {% endif %}
             </div>
             <b><i>RSVP</i></b> : {{ item.email }} <br> <br>
