@@ -70,9 +70,9 @@ def profile(request):
 @login_required
 def view_profile(request, *args, **kwargs):
     if request.method == 'GET':
-        #profile_user = Profile.objects.get(id=kwargs['id'])
-        user = User.objects.get(id = kwargs['id'])
-        profile_user = Profile.objects.get(user_id = user.id)
+        profile_user = Profile.objects.get(user_id=kwargs['id'])
+        # user = User.objects.get(id = kwargs['id'])
+        # profile_user = Profile.objects.get(user_id = user.id)
         return render(request, 'users/view_profile.html', context={'view_user': profile_user, 'title': 'User Profile'})
 
     return render(request, 'users/view_profile.html', context={'title': 'User Profile'})
