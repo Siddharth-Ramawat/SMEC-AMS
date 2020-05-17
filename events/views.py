@@ -35,7 +35,7 @@ class events_creation(LoginRequiredMixin,View):
         if form.is_valid():
             #update_or_create should be done
             form = form.save(commit = False)
-            form.user = get_object_or_404(Profile,user_id=request.user.id)
+            form.user = get_object_or_404(User,id=request.user.id)
             if request.POST.get('event_id'):
                 event = Events.objects.get(pk = int(request.POST.get('event_id').strip('/')))
                 form = EventsCreation(data=request.POST,instance=event)
