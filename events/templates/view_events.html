@@ -51,20 +51,18 @@
                     <div class="col sm-8">
                         <b>Event</b> : {{ item.event_subject }} <br> <br>
                     </div>
+                    {% if item.user_id == user_logged.id %}
                     <div class="float-sm-right">
-                        {% if item.user_id == user_logged.id %}
                             <a class="btn btn-outline-info btn-sm mt-1 mb-1" href="{% url 'event-update' item.id %}">Update</a>
-                        {% endif %}
                     </div>
                     <div class="float-sm-right">
-                        {% if item.user_id == user_logged.id %}
                             <form action="{% url 'delete-event' %}" method="post">
                                 {% csrf_token %}
                             <input type="hidden" name="event_id" value="{{ item.id }}">
                             <input type="submit" class="btn btn-danger btn-sm mt-1 mb-1 " value="Delete" />
-                        {% endif %}
                             </form>
                     </div>
+                    {% endif %}
             </div>
             <b><i>RSVP</i></b> : {{ item.email }} <br> <br>
             {{ item.text }}<br> <br>
