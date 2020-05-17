@@ -40,7 +40,7 @@
                         <span style="font-size: 2em; color: darkslategray;">
                             <i class="fas fa-user"></i>
                         </span>
-                            <b>Organizer : <a href="{% url 'user_profile' item.user_id %}">{{ item.organizer_name }}</a></b>
+                            <b>Organizer : <a href="{% url 'user_profile' profile_id %}">{{ item.organizer_name }}</a></b>
                         </small>
                         </div>
                     </div>
@@ -51,12 +51,12 @@
                     <div class="col sm-8">
                         <b>Event</b> : {{ item.event_subject }} <br> <br>
                     </div>
-                    {% if item.user_id == profile_id %}
+                    {% if item.user_id == user_logged.id %}
                     <div class="float-sm-right">
                             <a class="btn btn-outline-info btn-sm mt-1 mb-1" href="{% url 'event-update' item.id %}">Update</a>
                     </div>
                     <div class="float-sm-right">
-                        {% if item.user_id == profile_id %}
+                        {% if item.user_id == user_logged.id %}
                             <form action="{% url 'delete-event' %}" onsubmit="return confirm('Are you sure you want to delete this event?')" method="post" >
                                 {% csrf_token %}
                             <input type="hidden" name="event_id" value="{{ item.id }}">
