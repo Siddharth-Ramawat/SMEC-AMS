@@ -144,13 +144,15 @@ class view_events(View):
         return render(request, template_name="view_events.html",context=context)
 
 def send_registration_message(event_id, user_details):
-    details = Events.objects.get(id=event_id)
-    Mailgun.send_mail([user_details.email], "Thankyou For showing interest!", "Thankyou For showing interest!",
-                      "<p>Hi " + str(
-                          user_details.username) + ",<br><br> Thankyou for registering for the event - " + str(
-                          details.event_subject) + ".The Event will be held on " + str(
-                          details.event_date) + " make sure you are available.<br><br> Regards,<br> Team AMS <p>")
-
+    try:
+        details = Events.objects.get(id=event_id)
+        Mailgun.send_mail([user_details.email], "Thankyou For showing interest!", "Thankyou For showing interest!",
+                          "<p>Hi " + str(
+                              user_details.username) + ",<br><br> Thankyou for registering for the event - " + str(
+                              details.event_subject) + ".The Event will be held on " + str(
+                              details.event_date) + " make sure you are available.<br><br> Regards,<br> Team AMS <p>")
+    except Exception:
+        print("Something went wrong!")
 
 def send_creation_message(event_id):
     try:
