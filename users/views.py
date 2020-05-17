@@ -35,7 +35,7 @@ def register(request):
                 return redirect('dash-home')
             except Exception:
                 messages.warning(request, f'There was some issue')
-                return HttpResponseRedirect('users/login.html')
+                return redirect('login')
     else:
         form = UserRegisterForm()
         profile_form = ProfileRegisterForm()

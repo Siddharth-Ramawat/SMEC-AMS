@@ -68,6 +68,7 @@
                         </li>
                     {% endif %}
                 </ul>
+                {% if user.is_authenticated %}
                 <form  class="form-inline flex-nowrap rounded my-2 my-md-0" action="{% url 'search-users' %}" method="GET" value="{{request.GET.query}}">
                             <input class="form-control my-2 my-md-0" type="text" name="query" value="{{request.GET.query}}"  placeholder="Search users"/>
                             <input class="btn btn-outline-primary" type="submit" name="submit" value="Search"/>
@@ -80,6 +81,7 @@
                         <a class="nav-item nav-link mr-auto" href="{% url 'logout'  %}">Logout</a>
                     </li>
                 </ul>
+                {% endif %}
 
             </div>
         </nav>

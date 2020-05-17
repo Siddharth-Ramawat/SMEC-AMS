@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from django.contrib.auth import views as auth_views
+
 from django.conf.urls.static import static
 from django.conf import settings
-from users import views as user_views
+
 
 
 urlpatterns = [
@@ -27,17 +27,14 @@ urlpatterns = [
     path('', include('events.urls')),
     path('', include('dash.urls')),
     path('',include('users.urls')),
-    path('view_user/<int:id>', user_views.view_profile, name='user_profile'),
+
 ]
 
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns = [
         path('__debug__/', include(debug_toolbar.urls)),
-        path('register/', user_views.register, name='register'),
-        path('login/', auth_views.LoginView.as_view(template_name='users/login.html', redirect_authenticated_user=True), name='login'),
-        path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
-        path('profile/', user_views.profile, name='profile'),
+
 
         # For django versions before 2.0:
         # url(r'^__debug__/', include(debug_toolbar.urls)),
