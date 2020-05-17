@@ -9,19 +9,23 @@ def present_or_future_date(value):
         raise forms.ValidationError("The date cannot be in the past!")
     return value
 
+def current_date():
+    return datetime.date.today()
 
-class DateInput(forms.DateInput):
-    input_type = 'date'
+#
+# class DateInput(forms.DateInput):
+#     input_type = 'date'
+
 
 
 class EventsCreation(forms.ModelForm):
     text = forms.CharField(max_length=400, widget=forms.Textarea())
-    event_date = forms.DateField(validators=[present_or_future_date], widget=DateInput)
+    event_date = forms.DateField(validators=[present_or_future_date], widget=forms.DateInput(attrs={'type': 'date', 'min': current_date}))
     venue = forms.CharField(empty_value='')
 
     class Meta:
         model = Events
-        widgets = {'event_date': DateInput()}
+        # widgets = {'event_date': DateInput()}
         exclude = ['username', 'user']
 
     def __init__(self, *args, **kwargs):
