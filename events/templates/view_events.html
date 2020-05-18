@@ -94,20 +94,22 @@
                                 <p class="progress-label">
                                     Yes:
                                 </p>
-                                <div class="progress" style="width:50%; height:25px; border-radius: 25px;">
+                                <div class="progress" style="width:50%; height:25px; border-radius: 25px; text-align:center  ">
+                                    <span class="progress-value" style="width:70%; position:absolute; right:0; left:0;">{{ result.yes_count|div:answer|mul:"100"|floatformat }}%</span>
                                     <div class="progress-bar" role="progressbar"
-                                            aria-valuemin="0" aria-valuemax="100" style="-webkit-border-radius: 25px; border-radius: 25px; width:{{ result.yes_count|div:answer|mul:100|floatformat }}%">
-                                    {{ result.yes_count|div:answer|mul:"100"|floatformat }}%
+                                            aria-valuemin="0" aria-valuemax="100" style="border-radius: 25px; width:{{ result.yes_count|div:answer|mul:100|floatformat }}%">
+
                                     </div>
                                 </div><br>
                                 <p class="progress-label">
                                     No:
                                 </p>
-                                <div class="progress" style="width:50%; height:25px; border-radius: 25px;">
+                                <div class="progress" style="width:50%; height:25px; border-radius: 25px; text-align:center; ">
+                                    <div class="progress-value" style="width:70%; position:absolute; right:0; left:0;">{{ result.no_count|div:answer|mul:"100"|floatformat }}%</div>
                                     <div class="progress-bar" role="progressbar"
-                                            aria-valuemin="0" aria-valuemax="100" style="border-radius: 25px; width:{{ result.no_count|div:answer|mul:100|floatformat }}%" >
-                                    {{ result.no_count|div:answer|mul:"100"|floatformat }}%
+                                         aria-valuemin="0" aria-valuemax="100" style="border-radius: 25px; width:{{ result.no_count|div:answer|mul:100|floatformat }}%" >
                                     </div>
+
                                 </div><br><br>
                             {% endwith %}
                         {% endif %}
