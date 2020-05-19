@@ -25,6 +25,7 @@ def register(request):
                 userprofile.job_role=profile_form.cleaned_data['job_role']
                 userprofile.work_location=profile_form.cleaned_data['work_location']
                 userprofile.company=profile_form.cleaned_data['company']
+                userprofile.passout_year = profile_form.cleaned_data['passout_year']
                 userprofile.save()
                 username = form.cleaned_data.get('username')
                 raw_password = form.cleaned_data.get('password1')
