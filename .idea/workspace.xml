@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="674151bc-1a20-434e-ae75-71b4d377034f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/media/about_us.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/profile_pics/0.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/smec_logo_1.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dash/templates/dash/search_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/dash/templates/dash/search_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feedback/templates/view_feedback.html" beforeDir="false" afterPath="$PROJECT_DIR$/feedback/templates/view_feedback.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dash/static/dash/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/dash/static/dash/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dash/templates/dash/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/dash/templates/dash/about.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/smec_logo.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/media/smec_logo.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/templates/users/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/templates/users/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/register.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

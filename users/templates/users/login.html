@@ -4,35 +4,11 @@
 
 {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'users/login.css' %}">
 <script type="text/javascript" src="{% static 'users/login.js' %}"></script> {% endcomment %}
-{% comment %} 
- {% block content %}
-<div class="row justify-content-md-center">
-<div class="col-md-5">
-    <div class="content-section" >
-        <form method="POST" class="border border-light p-5">
-            {% csrf_token %}
-            <fieldset class="form-group ">
-                <legend class="border-bottom mb-4 ">Log In</legend>
-                {{ form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Login</button>
-            </div>
-        </form>
-        <div class="border-top pt-3">
-            <small class="text-muted">
-                Need An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
-            </small>
-        </div>
-    </div>
-</div>
-</div>
-{% endblock content %}  {% endcomment %}
-
 
 {% block content %}
 <div class="wrapper fadeInDown">
   <div id="formContent">
+    <div class="content-section">
     <!-- Tabs Titles -->
 
     <!-- Icon -->
@@ -41,7 +17,7 @@
     </div>
 
     <!-- Login Form -->
-    <form method="POST" class="border border-light">
+    <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4 py-1 fadeIn second">Log In</legend>
@@ -60,5 +36,6 @@
     </div>
 
   </div>
+</div>
 </div>
 {% endblock content %}
